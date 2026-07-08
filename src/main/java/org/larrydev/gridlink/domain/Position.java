@@ -40,4 +40,25 @@ public final class Position {
 
         return withinTop && withinBottom && withinLeft && withinRight;
     }
+
+    public int distanceFrom(Position anotherAnother, Direction direction){
+        return switch (direction){
+            case NORTH, SOUTH -> Math.abs( y - anotherAnother.getY());
+            case WEST, EAST -> Math.abs(x - anotherAnother.getX());
+        };
+    }
+
+    public Position newPos(Direction direction, int numSteps){
+        int newX = x;
+        int newY = y;
+
+        switch (direction){
+            case NORTH -> newY += numSteps;
+            case SOUTH -> newY -= numSteps;
+            case WEST -> newX -= numSteps;
+            case EAST -> newX += numSteps;
+        }
+
+        return new Position(newX, newY);
+    }
 }
