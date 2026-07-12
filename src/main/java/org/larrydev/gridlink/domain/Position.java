@@ -17,6 +17,7 @@ public final class Position {
 
     @Override
     public boolean equals(Object o) {
+        if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Position position = (Position) o;
         return x == position.x && y == position.y;
@@ -32,7 +33,7 @@ public final class Position {
         return "(x: "+x+", y: "+y+")";
     }
 
-    public boolean isIn(Position topLeft, Position bottomRight){
+    public boolean isInside(Position topLeft, Position bottomRight){
         boolean withinTop = y <= topLeft.getY();
         boolean withinBottom = y >= bottomRight.getY();
         boolean withinLeft = x >= topLeft.getX();
@@ -48,7 +49,7 @@ public final class Position {
         };
     }
 
-    public Position newPos(Direction direction, int numSteps){
+    public Position offset(Direction direction, int numSteps){
         int newX = x;
         int newY = y;
 
